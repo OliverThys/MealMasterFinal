@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Recipe</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <h2>Add a New Recipe</h2>
+        <form th:action="@{/recipes/add}" th:object="${recipe}" method="post" novalidate>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" required><br>
+
+            <label>Preparation Time:</label>
+            <input type="text" th:field="*{prepTime}" required><br>
+
+            <label>Image URL:</label>
+            <input type="text" th:field="*{imageUrl}" required><br>
+
+            <label>Description:</label>
+            <textarea th:field="*{description}" required></textarea><br>
+
+            <label>Author:</label>
+            <input type="text" th:field="*{author}" required><br>
+
+            <label>Ingredients:</label>
+            <div id="ingredients-container" class="ingredient-list">
+                <!-- Ingrédient initial (0) -->
+                <div class="ingredient-row">
+                    <input type="text" name="ingredients[0].name" placeholder="Ingredient name" />
+                    <input type="number" name="ingredients[0].quantity" placeholder="Quantity" min="0"/>
+                    <select name="ingredients[0].unit">
+                        <option value="pieces">pieces</option>
+                        <option value="grams">grams</option>
+                        <option value="ml">ml</option>
+                        <option value="tbsp">tbsp</option>
+                        <option value="tsp">tsp</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="button" id="add-ingredient-btn">➕ Add Ingredient</button><br><br>
+            <button type="submit">Submit</button>
+            <div id="ingredients-preview"></div>
+        </form>
+    </div>
+</body>
+</html>

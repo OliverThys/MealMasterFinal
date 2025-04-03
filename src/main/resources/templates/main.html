@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main - MealMasterFinal</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <img src="/images/logo.png" alt="Meal Master logo" class="logo-img">
+        </div>
+        
+        <div class="underhead-container">
+            <p class="intro-steps">
+                <span>Add your recipes</span> →
+                <span>Plan your meals</span> →
+                <span>Get your easy shopping list</span>
+            </p>
+        </div>
+        
+
+        <div class="content-row">
+            <div class="recipe-list-container">
+
+                <div class="recipe-container-title">
+                    Your Recipe List!
+                </div>
+            
+                <div class="recipe-zone-box">
+            
+                    <!-- Barre de recherche -->
+                    <form id="search-form" class="search-form" th:action="@{/main}" method="get">
+
+                        <input type="text" name="query" id="search-input" placeholder="Search recipe by name..." th:value="${query}" />
+                        <button type="submit" style="display: none;"></button> <!-- pour Enter -->
+                        <span id="reset-search" style="cursor: pointer;">✖️</span>
+                    </form>
+            
+                    <!-- Résultat de recherche -->
+                    <div th:if="${query != null}">
+                        <p th:text="${#lists.size(recipes)} + ' recipe(s) found'"></p>
+                        <p th:if="${#lists.size(recipes)} == 0">No recipe found for "<span th:text="${query}"></span>"</p>
+                    </div>
+            
+                    <!-- Liste de recettes -->
+                    <div class="recipe-scroll-box">
+                        <div th:each="recipe : ${recipes}" class="recipe-item">
+                            <div class="recipe-info-box">
+                                <strong class="recipe-name" draggable="true" th:text="${recipe.name}">Recipe Name</strong>
+
+                                <div>
+                                    <span>🕒</span>
+                                    <span th:text="${recipe.prepTime}">30 min</span>
+                                </div>
+                            </div>
+                            <div class="recipe-image-box">
+                                <img th:src="${recipe.imageUrl}" alt="Recipe Image" />
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <!-- Bouton ajout recette -->
+                <div class="recipe-buttons-container">
+                    <button id="add-recipe-btn" onclick="window.location.href='/recipes/add'">➕ Add Recipe</button>
+                </div>
+            
+            </div>
+            
+            
+            <div class="calendar-zone-container">
+
+                <div class="calendar-container-title-box">
+                    Weekly Planning
+                </div>
+            
+                <div class="calendar-cases-container">
+                    
+                    <!-- Jours affichés (ex: Mon, Tue, ...) -->
+                    <div class="calendar-days-box">
+                        <div th:each="day : ${days}" class="calendar-day-name">
+                            <span th:text="${day}">Day</span>
+                        </div>
+                    </div>
+            
+                    <!-- Cases calendrier (midi + soir par jour) -->
+                    <div class="calendar-slots-box">
+                        <div th:each="dayKey, iterStat : ${dayKeys}" class="calendar-day-column">
+                            <div class="calendar-slot midi" 
+                                th:id="'slot-' + ${dayKey} + '-midi'" 
+                                th:attr="data-case-id=${iterStat.index * 2 + 1}">Midi</div>
+
+                            <div class="calendar-slot soir" 
+                                th:id="'slot-' + ${dayKey} + '-soir'" 
+                                th:attr="data-case-id=${iterStat.index * 2 + 2}">Soir</div>
+
+
+                        </div>
+                        
+                    </div>
+            
+                </div>
+            
+                <div class="calendar-buttons-box">
+                    <div class="calendar-buttons-zone-box">
+                        <button id="save-planning-btn">💾 Save Planning</button>
+                        <button id="generate-shopping-list-btn">🛒 Generate Shopping List</button>
+                        <button id="reset-planning-btn">♻️ Reset Planning</button>
+
+                    </div>
+                </div>
+            
+            </div>
+            
+            
+            <div class="shopping-list-container">
+                <div class="shopping-list-title">Shopping List</div>
+                <div id="shopping-list-content"></div>
+            
+                <button id="export-pdf-btn">📄 Export to PDF</button>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            © 2025 MealMaster by Oliver Thys — Plan your week. Eat like a king.
+        </div>
+        
+    </div>
+</body>
+</html>
