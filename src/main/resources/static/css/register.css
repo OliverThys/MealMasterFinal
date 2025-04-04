@@ -1,0 +1,77 @@
+.register-container {
+    max-width: 400px;
+    margin: 8vh auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-container h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #d43c2f; /* rouge burger king style */
+}
+
+.register-container label {
+    display: block;
+    text-align: left;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"] {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.register-container input:focus {
+    border-color: #d43c2f;
+    outline: none;
+}
+
+.register-container button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #d43c2f;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-container button:hover {
+    background-color: #b73226;
+}
+
+.register-container p {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.register-container a {
+    color: #d43c2f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    margin-top: 1rem;
+    color: red;
+    font-weight: bold;
+}

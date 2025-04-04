@@ -28,18 +28,24 @@ public class ShoppingListService {
     public List<IngredientDTO> getAggregatedIngredients(String username) {
         List<CalendarSlot> slots = calendarSlotRepository.findByUsername(username);
         Map<String, IngredientDTO> aggregated = new HashMap<>();
-
+    
         for (CalendarSlot slot : slots) {
             Recipe recipe = recipeRepository.findByName(slot.getRecipeName()).orElse(null);
             if (recipe != null) {
-                recipe.getIngredientsList().size(); // 👈 force le chargement
+                recipe.getIngredientsList().size(); // Force le chargement
             }
-
+    
             if (recipe == null) continue;
-
-            for (Ingredient ing : recipe.getIngredientsList() ) {
+    
+            for (Ingredient ing : recipe.getIngredientsList()) {
+                // Vérifie que les données ne sont pas nulles
+                if (ing.getName() == null || ing.getQuantity() == null || ing.getUnit() == null) {
+                    System.out.println("⚠️ Ingrédient invalide ignoré : " + ing);
+                    continue;
+                }
+    
                 String key = ing.getName().toLowerCase() + "_" + ing.getUnit();
-
+    
                 aggregated.compute(key, (k, existing) -> {
                     if (existing == null) {
                         return new IngredientDTO(ing.getName(), ing.getQuantity(), ing.getUnit());
@@ -50,8 +56,9 @@ public class ShoppingListService {
                 });
             }
         }
-
+    
         return new ArrayList<>(aggregated.values());
     }
+    
 }
 
