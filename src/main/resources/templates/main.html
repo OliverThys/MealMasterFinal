@@ -16,30 +16,31 @@
         </div>
         
         <div class="underhead-container">
-            <p class="intro-steps">
-                <span>Add your recipes</span> →
-                <span>Plan your meals</span> →
-                <span>Get your easy shopping list</span>
-            </p>
-        </div>
+            <div class="rotating-steps">
+              <span class="step-text">Add your recipes</span>
+              <span class="step-text">Plan your meals</span>
+              <span class="step-text">Get your shopping list</span>
+            </div>
+          </div>
+          
         
 
         <div class="content-row">
             <div class="recipe-list-container">
 
                 <div class="recipe-container-title">
-                    Your Recipe List!
+                    Recipe list
                 </div>
             
                 <div class="recipe-zone-box">
             
                     <!-- Barre de recherche -->
                     <form id="search-form" class="search-form" th:action="@{/main}" method="get">
-
                         <input type="text" name="query" id="search-input" placeholder="Search recipe by name..." th:value="${query}" />
-                        <button type="submit" style="display: none;"></button> <!-- pour Enter -->
-                        <span id="reset-search" style="cursor: pointer;">✖️</span>
+                        <button type="submit" style="display: none;"></button> <!-- submit via Entrée -->
+                        <span id="reset-search">✖️</span>
                     </form>
+                    
             
                     <!-- Résultat de recherche -->
                     <div th:if="${query != null}">
@@ -68,8 +69,11 @@
             
                 <!-- Bouton ajout recette -->
                 <div class="recipe-buttons-container">
-                    <button id="add-recipe-btn" onclick="window.location.href='/recipes/add'">➕ Add Recipe</button>
+                    <button id="add-recipe-btn" onclick="window.location.href='/recipes/add'">
+                        ➕ Add Recipe
+                    </button>
                 </div>
+                
             
             </div>
             
@@ -94,11 +98,11 @@
                         <div th:each="dayKey, iterStat : ${dayKeys}" class="calendar-day-column">
                             <div class="calendar-slot midi" 
                                 th:id="'slot-' + ${dayKey} + '-midi'" 
-                                th:attr="data-case-id=${iterStat.index * 2 + 1}">Midi</div>
+                                th:attr="data-case-id=${iterStat.index * 2 + 1}">Lunch</div>
 
                             <div class="calendar-slot soir" 
                                 th:id="'slot-' + ${dayKey} + '-soir'" 
-                                th:attr="data-case-id=${iterStat.index * 2 + 2}">Soir</div>
+                                th:attr="data-case-id=${iterStat.index * 2 + 2}">Dinner</div>
 
 
                         </div>
@@ -121,7 +125,7 @@
             
             <div class="shopping-list-container">
                 <div class="shopping-list-title">Shopping List</div>
-                <div id="shopping-list-content"></div>
+                <div id="shopping-list-content">No ingredient yet</div>
             
                 <button id="export-pdf-btn">📄 Export to PDF</button>
             </div>
@@ -133,5 +137,6 @@
         </div>
         
     </div>
+    
 </body>
 </html>

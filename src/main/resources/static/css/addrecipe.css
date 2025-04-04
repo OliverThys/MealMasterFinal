@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Inter:wght@400;600&display=swap');
+
+/* ===== RESET GÉNÉRAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background-image: url('/images/main-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #4A2600;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.main-container {
+    max-width: 600px;
+    margin: 4% auto;
+    background-color: #FFFDF4;
+    border: 2px solid #D07D00;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ===== LOGO ===== */
+.main-container::before {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: url('/images/logo.png') no-repeat center center / contain;
+    margin: 0 auto 1.5rem auto;
+}
+
+/* ===== TITRE ===== */
+.main-container h2 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2.2rem;
+    color: #FFC107;
+    text-shadow: 2px 2px #8B1A1A;
+    margin-bottom: 2rem;
+}
+
+/* ===== FORMULAIRES ===== */
+form {
+    text-align: left;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #8B1A1A;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 1.2rem;
+    border: 1px solid #D07D00;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 1rem;
+    color: #4A2600;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #8B1A1A;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ===== INGREDIENTS ===== */
+.ingredient-list {
+    background-color: #FFF8E1;
+    border: 1px solid #FFC107;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ingredient-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ===== BOUTONS ===== */
+button[type="button"],
+button[type="submit"] {
+    background-color: #8B1A1A;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+button:hover {
+    background-color: #6C1B1B;
+    transform: translateY(-2px);
+}
+
+/* ===== PRÉVISUALISATION D'INGRÉDIENTS ===== */
+#ingredients-preview {
+    margin-top: 1.5rem;
+    padding: 12px;
+    background-color: #FFF8E1;
+    border: 1px solid #FFC107;
+    border-radius: 10px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #4A2600;
+    white-space: pre-line;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

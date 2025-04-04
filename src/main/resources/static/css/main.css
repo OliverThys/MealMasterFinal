@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Inter:wght@400;600&display=swap');
+
 /* ========== GLOBAL RESET ========== */
 * {
     margin: 0;
@@ -9,222 +10,424 @@
 html, body {
     width: 100%;
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fff8ef;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    color: #4A2600;
+    line-height: 1.5;
+    scroll-behavior: smooth;
+
+    background-image: url('/images/main-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* ← pour un effet "parallaxe"/figé */
 }
+
 
 /* ========== HEADER ========== */
 .header {
-    background-color: #8B1A1A;
-    padding: 15px 0;
+    background-image: url('/images/header-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 24px 0;
     text-align: center;
     border-bottom: 4px solid #FFC107;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
+
+
 
 .logo-img {
-    height: 60px;
+    height: 85px;
+    transition: transform 0.3s ease;
+    background-color: #FFF8EF;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #FFC107;
 }
 
-/* ========== UNDERHEAD (INTRO) ========== */
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* ========== UNDERHEAD (INTRO SLOGAN) ========== */
 .underhead-container {
-    background-color: #FFD700;
-    padding: 10px 0;
+    background-color: transparent;
+    padding: 28px 0;
     text-align: center;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-bottom: 2px dashed #b45309;
 }
 
 .intro-steps span {
-    color: #4a2600;
-    margin: 0 6px;
     font-style: italic;
+    margin: 0 6px;
+    color: #8B1A1A; /* Accent rouge branding */
 }
 
-/* ========== MAIN CONTAINER ========== */
+/* Texte animé dans le bandeau jaune */
+/* Texte animé dans le bandeau jaune */
+/* Container texte animé centré */
+.rotating-steps {
+    position: relative;
+    height: 3rem; /* hauteur d’une ligne animée */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Texte manuscrit animé */
+.step-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    animation: stepCycle 11s infinite;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s, transform 0.5s;
+    font-family: 'Marcovaldo', serif;
+    font-size: 3rem; /* Taille bien visible */
+    font-weight: bold;
+    font-style: italic;
+    color: #8B1A1A;
+    letter-spacing: 0.5px;
+}
+
+
+
+/* Apparition contrôlée selon l'étape */
+.step-text:nth-child(1) {
+    animation-delay: 0s;
+}
+.step-text:nth-child(2) {
+    animation-delay: 3s;
+}
+.step-text:nth-child(3) {
+    animation-delay: 6s;
+}
+
+/* Animation keyframes */
+@keyframes stepCycle {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    15% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    35% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    45% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+
+
+
+/* ========== MAIN LAYOUT ========== */
 .main-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding: 0;
 }
 
-/* ========== ROW CONTAINER ========== */
 .content-row {
     flex: 1;
     display: flex;
-    padding: 1rem;
-    gap: 1rem;
-    background-color: #fdf6ed;
+    padding: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background-color: transparent;
 }
+
 
 /* ========== RECIPE LIST ========== */
 .recipe-list-container {
-    background-color: #fff3cd;
-    border: 2px dashed #d07d00;
-    border-radius: 10px;
-    padding: 1rem;
-    flex: 0 0 22%;
+    background: #fffefc;
+    border: 2px solid #D07D00;
+    border-radius: 18px;
+    padding: 2rem 1.5rem;
+    flex: 0 0 20%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    max-height: 90vh;
+    overflow: hidden;
+    margin-top: -20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* Titre recette */
 .recipe-container-title {
-    font-weight: bold;
-    background-color: #ffc107;
-    padding: 10px;
-    border-radius: 6px;
+    font-weight: 600;
+    background-color: transparent;
+    padding: 14px;
+    border-radius: 12px;
     text-align: center;
-    font-size: 1.1rem;
-    color: #4a2600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2rem;
+    color: #FFC107; /* Jaune signature */
+    text-shadow: 2px 2px #8B1A1A; /* → ombre douce sur le texte */
+    margin-bottom: 14px;
 }
+
 
 /* ========== SEARCH BAR ========== */
-.recipe-search-box input {
+.search-form {
+    position: relative;
     width: 100%;
-    padding: 8px;
-    margin: 12px 0;
-    border-radius: 6px;
-    border: 1px solid #aaa;
-    font-size: 0.95rem;
+    margin-bottom: 1rem;
 }
 
-/* ========== ZONE SCROLLABLE DES RECETTES ========== */
+#search-input {
+    width: 100%;
+    padding: 12px 44px 12px 16px;
+    border: 1px solid #D07D00;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #4A2600;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #8B1A1A;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+}
+
+/* Croix reset */
+#reset-search {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: #8B1A1A;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+#reset-search:hover {
+    color: #B71C1C;
+}
+
+
+/* ========== LISTE SCROLLABLE DES RECETTES ========== */
 .recipe-scroll-zone {
     flex: 1;
     overflow-y: auto;
-    max-height: 60vh;
-    padding-right: 4px;
+    padding-right: 6px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+}
+
+/* Scrollbar personnalisée */
+.recipe-scroll-zone::-webkit-scrollbar {
+    width: 6px;
+}
+
+.recipe-scroll-zone::-webkit-scrollbar-track {
+    background: #f9f4e8;
+    border-radius: 10px;
+}
+
+.recipe-scroll-zone::-webkit-scrollbar-thumb {
+    background: #D07D00;
+    border-radius: 10px;
+}
+
+.recipe-scroll-zone::-webkit-scrollbar-thumb:hover {
+    background: #a66400;
 }
 
 /* ========== FICHE RECETTE ========== */
 .recipe-item {
-    background: #fff8e1;
-    border: 1px solid #e0a800;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 1px 2px 5px rgba(0,0,0,0.1);
+    background: #FFFDF8;
+    border: 1px solid #f0e0b2;
+    border-radius: 12px;
+    padding: 14px 16px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: grab;
 }
 
 .recipe-item:hover {
-    transform: scale(1.02);
-    background-color: #fff3c5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #fff9e6;
 }
 
+/* Zone texte recette */
 .recipe-info-box {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+/* Nom de la recette */
 .recipe-name {
-    font-weight: bold;
-    color: #6c3900;
-    font-size: 1rem;
+    font-weight: 600;
+    color: #4A2600;
+    font-size: 1.05rem;
     margin-bottom: 4px;
+    transition: color 0.3s;
 }
 
+.recipe-name:hover {
+    color: #8B1A1A;
+}
+
+/* Durée de préparation */
 .recipe-time {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #666;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 /* ========== IMAGE RECETTE ========== */
 .recipe-image-box {
-    width: 55px;
-    height: 55px;
-    border-radius: 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
     overflow: hidden;
-    margin-left: 10px;
+    margin-left: 14px;
+    background-color: #f2f2f2;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #aaa;
+    font-style: italic;
     flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
 
 .recipe-image-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-/* ========== BOUTON AJOUT ========== */
+.recipe-item:hover .recipe-image-box img {
+    transform: scale(1.05);
+}
+
+button,
 #add-recipe-btn {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #a6201a;
+    background-color: #8B1A1A;
     color: #fff;
-    font-weight: bold;
     border: none;
-    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    gap: 10px;
 }
 
+.recipe-buttons-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem; /* optionnel */
+}
+
+button:hover,
 #add-recipe-btn:hover {
-    background-color: #821812;
+    background-color: #6e1313;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* ========== CALENDRIER ========== */
+
+
+/* ========== ZONE CENTRALE CALENDRIER ========== */
 .calendar-zone-container {
-    background-color: #f5f5f5;
-    border-left: 2px dashed #9c1c1c;
-    border-right: 2px dashed #9c1c1c;
-    padding: 20px;
+    background-color: transparent;
+    padding: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
 }
-
-/* Conteneur central calendrier */
-.calendar-cases-container {
-    background-color: #eeeeee;
-    border-radius: 10px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border: 1px dashed #e53935;
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Header du calendrier : jours */
+
+.calendar-container-title-box {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3rem;
+    color: #FFC107; /* Jaune signature */
+    text-align: center;
+    margin: 1.5rem 0;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #8B1A1A; /* Ombre rouge foncé */
+    animation: popIn 0.6s ease-out;
+}
+
+
+/* Container principal du calendrier */
+.calendar-cases-container {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid #FFC107;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* ========== JOURS ========== */
 .calendar-days-box {
     display: flex;
     justify-content: space-between;
-    padding: 0 0.5rem;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
 .calendar-day-name {
     flex: 1;
-    background-color: #ff0000;
-    color: white;
+    background-color: #8B1A1A;
+    color: #ffffff;
     font-weight: bold;
     text-align: center;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.6rem;
+    border-radius: 8px;
     text-transform: uppercase;
-
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
 }
 
-.calendar-container-title-box {
-    font-family: 'Luckiest Guy', cursive;
-    font-size: 5rem;
-    text-align: center;
-    color: #d72323; /* Rouge Burger King */
-    text-shadow: 2px 2px #ffcc00; /* Jaune comme le fromage */
-    margin: 1rem 0;
-    letter-spacing: 1px;
-    animation: popIn 0.6s ease-out;
-}
-
-/* Colonne par jour */
+/* ========== COLONNES JOUR + SLOTS MIDI/SOIR ========== */
 .calendar-slots-box {
     display: flex;
     justify-content: space-between;
@@ -235,223 +438,274 @@ html, body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
-/* Slot (midi / soir) */
+/* Slot midi/soir */
 .calendar-slot {
     height: 100px;
-    background-color: #ffffff;
-    border: 2px dashed #cccccc;
+    background-color: #FFF8EF;
+    border: 2px solid #D07D00;
     border-radius: 10px;
     text-align: center;
-    padding: 0.5rem;
-    font-weight: bold;
+    padding: 0.6rem;
+    font-weight: 600;
     font-size: 0.95rem;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
 }
 
-/* Slots midi/soir différenciés */
+/* MIDI/SOIR différenciés si tu veux plus tard */
 .calendar-slot.midi {
-    background-color: #ffffff;
+    background-color: #FFFDF4;
 }
 
 .calendar-slot.soir {
-    background-color: #e0fbe0;
+    background-color: #FCFAF0;
 }
 
-/* Survol d’un slot */
+/* Highlight quand on survole avec un drag */
 .calendar-slot.droppable-hover {
-    background-color: #ffecb3;
-    border-color: #ffa000;
+    background-color: #FFF3C5;
+    border-color: #FFC107;
 }
 
-/* Élément déposé */
+/* ========== RECETTE DÉPOSÉE ========== */
 .dropped-recipe {
-    margin-top: 5px;
-    padding: 6px 10px;
-    background-color: #ffe082;
-    border-radius: 6px;
+    margin-top: 6px;
+    padding: 8px 10px;
+    background-color: #FFE082;
+    border-radius: 8px;
     font-weight: bold;
-    font-size: 0.9rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 0.88rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     cursor: default;
+    color: #4A2600;
 }
 
-/* ========== BOUTONS CALENDRIER ========== */
+/* ========== BOUTONS DU CALENDRIER ========== */
 .calendar-buttons-zone-box {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 24px;
 }
 
 .calendar-buttons-zone-box button {
-    background-color: #d32f2f;
-    color: white;
+    background-color: #8B1A1A; /* Rouge foncé branding */
+    color: #fff;
     border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
 }
 
 .calendar-buttons-zone-box button:hover {
-    background-color: #b71c1c;
+    background-color: #6E1414;
     transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ========== SHOPPING LIST ========== */
+
+/* ========== SHOPPING LIST CONTAINER ========== */
 .shopping-list-container {
-    background-color: #fffde7;
-    border-left: 2px solid #ff6f00;
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.shopping-list-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #f57c00;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-/* Liste façon ticket de caisse */
-#shopping-list-content {
-    background-color: #ffffff;
-    border: 2px dashed #ccc;
+    background-color: #FFF3CD; /* Jaune doux */
+    border-left: 2px solid #FFC107; /* Ligne séparation */
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
+    display: flex;
+    flex : 0 0 20%;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-top: -20px;
+}
+
+/* Titre "Shopping List" */
+.shopping-list-title {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2rem;
+    color: #FFC107; /* Jaune signature */
+    text-align: center;
+    margin: 1.5rem 0;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #8B1A1A; /* Ombre rouge foncé */
+    animation: popIn 0.6s ease-out;
+}
+
+/* CONTENU "Ticket" scrollable */
+#shopping-list-content {
+    background-color: #FFFFFF;
+    border: 2px solid #D07D00;
+    border-radius: 10px;
+    padding: 16px;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.95rem;
     line-height: 1.6;
-    max-height: 400px;
+    max-height: 350px;
     overflow-y: auto;
+    white-space: pre-line;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-/* ========== BOUTON PDF ========== */
+/* Barre scroll stylée dans ticket */
+#shopping-list-content::-webkit-scrollbar {
+    width: 6px;
+}
+#shopping-list-content::-webkit-scrollbar-thumb {
+    background-color: #FFC107;
+    border-radius: 4px;
+}
+
+/* BOUTON EXPORT PDF */
 #export-pdf-btn {
-    margin-top: 15px;
-    padding: 10px 16px;
-    background-color: #ff6f00;
-    color: white;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #FFC107;
+    color: #4A2600;
     border: none;
     font-weight: bold;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 
 #export-pdf-btn:hover {
-    background-color: #e65100;
+    background-color: #e6b300;
     transform: scale(1.05);
 }
 
-/* ========== INGREDIENTS PREVIEW (ADD RECIPE) ========== */
+
+/* ========== INGREDIENTS - PREVIEW DES DONNÉES AJOUTÉES ========== */
 #ingredients-preview {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #fff8e1;
-    border: 1px dashed #ffb74d;
-    border-radius: 8px;
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #FFF8E1;
+    border: 1px solid #FFC107;
+    border-radius: 10px;
     font-family: "Courier New", Courier, monospace;
     font-size: 0.95rem;
     line-height: 1.5;
+    color: #4A2600;
+    white-space: pre-line;
 }
 
-/* ========== INGREDIENTS DANS FORMULAIRE ========== */
+/* ========== INGREDIENTS - ZONE DYNAMIQUE DANS LE FORMULAIRE ========== */
 .ingredient-list {
-    background-color: #fbe9e7;
-    border: 1px dashed #ff7043;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 15px;
+    background-color: #FFF3CD;
+    border: 1px solid #D07D00;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
+/* Chaque ligne d’ingrédient */
 .ingredient-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
     flex-wrap: wrap;
 }
 
 .ingredient-row input,
 .ingredient-row select {
-    padding: 6px 10px;
-    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border: 1px solid #CCC;
     border-radius: 6px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    flex: 1 1 auto;
+    min-width: 120px;
+    background-color: #fff;
 }
 
-/* Remove button */
+/* BOUTON SUPPRIMER un ingrédient */
 .remove-ingredient-btn {
     background: none;
     border: none;
-    color: #e53935;
+    color: #D32F2F;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .remove-ingredient-btn:hover {
-    color: #b71c1c;
+    color: #B71C1C;
 }
 
-/* Add Ingredient Button */
+/* BOUTON AJOUTER un ingrédient */
 #add-ingredient-btn {
     margin-top: 10px;
-    background-color: #ff9800;
+    align-self: flex-start;
+    background-color: #8B1A1A;
     color: white;
     font-weight: bold;
     border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
+    padding: 10px 16px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #add-ingredient-btn:hover {
-    background-color: #f57c00;
+    background-color: #6C1B1B;
+    transform: scale(1.05);
 }
 
-/* Submit Recipe */
+
+/* ========== SUBMIT RECIPE BUTTON ========== */
 form button[type="submit"] {
-    margin-top: 15px;
-    background-color: #4CAF50;
+    margin-top: 18px;
+    background-color: #4CAF50; /* Vert succès */
     color: white;
     border: none;
-    padding: 10px 18px;
-    font-weight: bold;
-    border-radius: 6px;
+    padding: 12px 20px;
+    font-weight: 700;
+    border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 form button[type="submit"]:hover {
     background-color: #388e3c;
+    transform: scale(1.04);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ========== FOOTER (BURGER KING STYLE) ========== */
+
+/* ========== FOOTER ========== */
 .footer {
     margin-top: auto;
-    background-color: #fff3e0;
-    color: #6d4c41;
+    background-color: #FFF8E1; /* Fond ticket */
+    color: #4A2600;
     font-size: 0.85rem;
     font-weight: bold;
-    border-top: 2px solid #ff9800;
-    padding: 10px;
+    border-top: 2px solid #FFC107;
+    padding: 12px 0;
     text-align: center;
     font-family: "Courier New", Courier, monospace;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
 }
+
 
 /* ========== TOOLTIP (si besoin dans le futur) ========== */
 .tooltip {
@@ -508,3 +762,66 @@ form button[type="submit"]:hover {
 .fade-in {
     animation: fade-in 0.5s ease-out;
 }
+
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toast {
+    min-width: 240px;
+    max-width: 300px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-in 4.5s forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast.success {
+    background-color: #4CAF50;
+}
+
+.toast.error {
+    background-color: #D32F2F;
+}
+
+.toast.info {
+    background-color: #1976D2;
+}
+
+/* Barre de progression */
+.toast::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
+    animation: progressBar 5s linear forwards;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateX(100%); }
+}
+
+@keyframes progressBar {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
