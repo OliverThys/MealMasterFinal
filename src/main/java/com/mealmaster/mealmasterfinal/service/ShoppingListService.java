@@ -32,14 +32,13 @@ public class ShoppingListService {
         for (CalendarSlot slot : slots) {
             Recipe recipe = recipeRepository.findByName(slot.getRecipeName()).orElse(null);
             if (recipe != null) {
-                recipe.getIngredientsList().size(); // Force le chargement
+                recipe.getIngredientsList().size(); // Force le chargement si Lazy
             }
     
             if (recipe == null) continue;
     
             for (Ingredient ing : recipe.getIngredientsList()) {
-                // Vérifie que les données ne sont pas nulles
-                if (ing.getName() == null || ing.getQuantity() == null || ing.getUnit() == null) {
+                if (ing == null || ing.getName() == null || ing.getUnit() == null) {
                     System.out.println("⚠️ Ingrédient invalide ignoré : " + ing);
                     continue;
                 }
@@ -59,6 +58,7 @@ public class ShoppingListService {
     
         return new ArrayList<>(aggregated.values());
     }
+    
     
 }
 
