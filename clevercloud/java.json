@@ -1,5 +1,9 @@
 {
-    "build": ["mvn", "clean", "package"],
-    "run": ["java", "-jar", "target/MealMasterFinal-1.0-SNAPSHOT.jar"]
+    "build": {
+      "type": "maven"
+    },
+    "deploy": {
+      "jarName": "mealmasterfinal.jar"
+    }
   }
   
