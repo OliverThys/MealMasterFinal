@@ -825,3 +825,76 @@ form button[type="submit"]:hover {
     to { width: 0%; }
 }
 
+
+@media (max-width: 768px) {
+
+    /* Réorganisation des blocs principaux */
+    .main-container {
+        padding: 0;
+    }
+
+    .content-row {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .recipe-list-container,
+    .calendar-zone-container,
+    .shopping-list-container {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    .recipe-list-container,
+    .shopping-list-container {
+        max-height: none;
+    }
+
+    .calendar-slot {
+        height: auto; /* pour que ça s'adapte mieux en hauteur */
+        min-height: 80px;
+    }
+
+    .calendar-days-box,
+    .calendar-slots-box {
+        flex-direction: column;
+    }
+
+    .calendar-day-column {
+        width: 100%;
+    }
+
+    /* Réduction des tailles de texte */
+    .recipe-container-title,
+    .shopping-list-title,
+    .calendar-container-title-box {
+        font-size: 1.8rem;
+    }
+
+    .step-text {
+        font-size: 1.5rem;
+    }
+
+    /* Adaptation boutons */
+    .calendar-buttons-zone-box {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .calendar-buttons-zone-box button {
+        width: 100%;
+    }
+
+    #export-pdf-btn {
+        width: 100%;
+    }
+
+    /* Marges réduites globalement */
+    .calendar-zone-container,
+    .recipe-list-container,
+    .shopping-list-container {
+        padding: 1rem;
+    }
+}
